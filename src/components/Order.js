@@ -33,14 +33,20 @@ class Order extends React.Component {
         <li key={key}>
           <span>
             <TransitionGroup component="span" className="count">
-              <CSSTransition classNames="count" key={count} timeout={{enter:250, exit:250}}>
+              <CSSTransition
+                classNames="count"
+                key={count}
+                timeout={{enter:250, exit:250}}
+              >
                 <span>{count}</span>
               </CSSTransition>
             </TransitionGroup>
             lbs {fish.name}
-            {formatPrice(count * fish.price)}
-            <button onClick={ () => this.props.removeFromOrder(key)}>&times;</button>
+            <button onClick={() => this.props.removeFromOrder(key)}>
+              &times;
+            </button>
           </span>
+          <span className="price">{formatPrice(count * fish.price)}</span>
         </li>
       </CSSTransition>
     )
@@ -63,10 +69,10 @@ class Order extends React.Component {
         <h2>Order</h2>
         <TransitionGroup component="ul" className="order">
           {orderIds.map(this.renderOrder)}
+          <li className="total">
+            <strong>Total: {formatPrice(total)}</strong>
+          </li>
         </TransitionGroup>
-        <div className="total">
-          <strong>Total: {formatPrice(total)}</strong>
-        </div>
       </div>
     )
   }
