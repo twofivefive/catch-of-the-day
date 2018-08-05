@@ -109,6 +109,7 @@ class App extends React.Component {
           fishes={this.state.fishes} 
           order={this.state.order}
           removeFromOrder = {this.removeFromOrder}
+          addToOrder = {this.addToOrder}
         />
         <Inventory 
           addFish={this.addFish}

@@ -42,6 +42,9 @@ class Order extends React.Component {
               </CSSTransition>
             </TransitionGroup>
             lbs {fish.name}
+            <button onClick={() => this.props.addToOrder(key)}>
+              &#43;
+            </button>
             <button onClick={() => this.props.removeFromOrder(key)}>
               &times;
             </button>
