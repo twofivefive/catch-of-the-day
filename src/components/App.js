@@ -76,7 +76,16 @@ class App extends React.Component {
     // 1. Take a copy of state
     const order = {...this.state.order}
     // 2. Either add to the order or update the number in the order
-    order[key] = order[key] + 1 || 1; // If the object exists add 1 or if it does not exist yet add just 1
+    order[key] = order[key] + 1 || 1 // If the object exists add 1 or if it does not exist yet add just 1
+    // 3. Call setState to update our state
+    this.setState({ order })
+  }
+
+  reduceOrder = (key) => {
+    // 1. Take a copy of state
+    const order = {...this.state.order}
+    // 2. Reduce the number of order by 1
+    order[key] = order[key] - 1
     // 3. Call setState to update our state
     this.setState({ order })
   }
@@ -108,8 +117,9 @@ class App extends React.Component {
         <Order 
           fishes={this.state.fishes} 
           order={this.state.order}
-          removeFromOrder = {this.removeFromOrder}
           addToOrder = {this.addToOrder}
+          reduceOrder = {this.reduceOrder}
+          removeFromOrder = {this.removeFromOrder}
         />
         <Inventory 
           addFish={this.addFish}

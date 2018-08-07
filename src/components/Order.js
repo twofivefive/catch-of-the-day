@@ -10,6 +10,15 @@ class Order extends React.Component {
     removeFromOrder: PropTypes.func,
   }
 
+  // Fix this. This feels hacky and not right. Removal should be instant when count is 0
+  handleReduceOrder = (key) => {
+    if(this.props.order[key] > 0) {
+      this.props.reduceOrder(key)
+    } else {
+      this.props.removeFromOrder(key)
+    }
+  }
+
   renderOrder = (key) => {
     const fish = this.props.fishes[key]
     const count = this.props.order[key]
@@ -44,6 +53,9 @@ class Order extends React.Component {
             lbs {fish.name}
             <button onClick={() => this.props.addToOrder(key)}>
               &#43;
+            </button>
+            <button onClick={() => this.handleReduceOrder(key)}>
+              &minus;
             </button>
             <button onClick={() => this.props.removeFromOrder(key)}>
               &times;
